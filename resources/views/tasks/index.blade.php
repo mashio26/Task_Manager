@@ -1,3 +1,9 @@
+@if(session('success'))
+    <div style="padding:10px; background:green; color:white; margin-bottom:10px;">
+        {{ session('success') }}
+    </div>
+@endif
+
 <h1>Task List</h1>
 
 <a href="{{ route('tasks.create') }}">Create Task</a>

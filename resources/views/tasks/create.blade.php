@@ -6,6 +6,12 @@
     <div>
         <label>Title</label>
         <input type="text" name="title">
+
+        @error('title')
+            <div style="color:red;">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <br>

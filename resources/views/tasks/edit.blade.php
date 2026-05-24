@@ -1,68 +1,51 @@
-<h1>Edit Task</h1>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="bg-white p-6 rounded shadow">
 
 <form action="{{ route('tasks.update', $task) }}" method="POST">
     @csrf
     @method('PUT')
 
-    <div>
-        <label>Title</label>
+    <input type="text" name="title"
+        placeholder="Title"
+        class="w-full border p-2 mb-3 rounded"
+        value="{{ $task->title }}">
 
-        <input
-            type="text"
-            name="title"
-            value="{{ $task->title }}"
-        >
+    @error('title')
+        <div style="color:red;">
+            {{ $message }}
+        </div>
+    @enderror
 
-        @error('title')
-            <div style="color:red;">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
+    <textarea name="description"
+            placeholder="Description"
+            class="w-full border p-2 mb-3 rounded">{{ $task->description }}</textarea>
 
-    <br>
+    <select name="status"
+            class="w-full border p-2 mb-3 rounded">
+        <option value="todo" {{ $task->status === 'todo' ? 'selected' : '' }}>
+            Todo
+        </option>
+        <option value="doing" {{ $task->status === 'doing' ? 'selected' : '' }}>
+            Doing
+        </option>
+        <option value="done" {{ $task->status === 'done' ? 'selected' : '' }}>
+            Done
+        </option>
+    </select>
 
-    <div>
-        <label>Description</label>
+    <input type="date" name="due_date"
+        class="w-full border p-2 mb-3 rounded"
+        value="{{ $task->due_date }}">
 
-        <textarea name="description">{{ $task->description }}</textarea>
-    </div>
-
-    <br>
-
-    <div>
-        <label>Status</label>
-
-        <select name="status">
-            <option value="todo" {{ $task->status === 'todo' ? 'selected' : '' }}>
-                Todo
-            </option>
-
-            <option value="doing" {{ $task->status === 'doing' ? 'selected' : '' }}>
-                Doing
-            </option>
-
-            <option value="done" {{ $task->status === 'done' ? 'selected' : '' }}>
-                Done
-            </option>
-        </select>
-    </div>
-
-    <br>
-
-    <div>
-        <label>Due date</label>
-
-        <input
-            type="date"
-            name="due_date"
-            value="{{ $task->due_date }}"
-        >
-    </div>
-
-    <br>
-
-    <button type="submit">
-        Update
+    <button class="bg-blue-500 text-white px-4 py-2 rounded">
+        Save
     </button>
+
 </form>
+
+</div>
+
+@endsection

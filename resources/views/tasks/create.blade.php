@@ -1,48 +1,36 @@
-<h1>Create Task</h1>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="bg-white p-6 rounded shadow">
 
 <form action="{{ route('tasks.store') }}" method="POST">
-    @csrf
+@csrf
 
-    <div>
-        <label>Title</label>
-        <input type="text" name="title">
+<input type="text" name="title"
+       placeholder="Title"
+       class="w-full border p-2 mb-3 rounded">
 
-        @error('title')
-            <div style="color:red;">
-                {{ $message }}
-            </div>
-        @enderror
-    </div>
+<textarea name="description"
+          placeholder="Description"
+          class="w-full border p-2 mb-3 rounded"></textarea>
 
-    <br>
+<select name="status"
+        class="w-full border p-2 mb-3 rounded">
+    <option value="todo">Todo</option>
+    <option value="doing">Doing</option>
+    <option value="done">Done</option>
+</select>
 
-    <div>
-        <label>Description</label>
-        <textarea name="description"></textarea>
-    </div>
+<input type="date" name="due_date"
+       class="w-full border p-2 mb-3 rounded">
 
-    <br>
+<button class="bg-blue-500 text-white px-4 py-2 rounded">
+    Save
+</button>
 
-    <div>
-        <label>Status</label>
-
-        <select name="status">
-            <option value="todo">Todo</option>
-            <option value="doing">Doing</option>
-            <option value="done">Done</option>
-        </select>
-    </div>
-
-    <br>
-
-    <div>
-        <label>Due date</label>
-        <input type="date" name="due_date">
-    </div>
-
-    <br>
-
-    <button type="submit">
-        Save
-    </button>
 </form>
+
+</div>
+
+@endsection

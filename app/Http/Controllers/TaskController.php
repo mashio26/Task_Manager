@@ -37,7 +37,9 @@ class TaskController extends Controller
             'due_date' => $request->due_date,
         ]);
     
-        return redirect()->route('tasks.index');
+        return redirect()
+            ->route('tasks.index')
+            ->with('success', 'Task created successfully');
     }
 
     /**
@@ -60,7 +62,9 @@ class TaskController extends Controller
             'due_date' => $request->due_date,
         ]);
     
-        return redirect()->route('tasks.index');
+        return redirect()
+            ->route('tasks.index')
+            ->with('success', 'Task updated successfully');
     }
 
     /**
@@ -70,6 +74,8 @@ class TaskController extends Controller
     {
         $task->delete();
 
-        return redirect()->route('tasks.index');
+        return redirect()
+            ->route('tasks.index')
+            ->with('success', 'Task deleted successfully');
     }
 }

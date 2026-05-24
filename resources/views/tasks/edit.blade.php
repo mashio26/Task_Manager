@@ -12,6 +12,12 @@
             name="title"
             value="{{ $task->title }}"
         >
+
+        @error('title')
+            <div style="color:red;">
+                {{ $message }}
+            </div>
+        @enderror
     </div>
 
     <br>
